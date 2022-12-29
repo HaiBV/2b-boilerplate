@@ -1,3 +1,61 @@
+## Usage
+
+Please clone the git repo, then runs the 2 following command sequentially.
+
+> Copy the `transactions.csv` in `data` folder.
+
+```
+npm i
+npm start
+```
+---
+
+## Approach
+
+First, I read the csv file the get the transaction of tokens. Here I am using a library [csv-parse](https://www.npmjs.com/package/csv-parse) to parse the transaction.
+
+Because the timestamp order by DESC to I read the transactions from the end. For each transaction, I get transactionType, token and amount and accumulate their amount to the tokens variable.
+
+Finally, I call an API to obtain the exchange rates compared from token to USD, then do the multiplication to convert the final amounts to USD.
+
+---
+## Design decisions
+### 1. Setting Configuration variables
+
+CRYPTO_CURRENCY_URL = "https://min-api.cryptocompare.com/data/pricemulti"
+
+These are used to get exchange rates from multiple tokens to multiple currencies.
+
+### 2. Error Handling
+#### If there are no transactions on log file
+We console the error
+
+`No token transactions on the logs`.
+
+---
+
+## Structure of the source code
+<pre>
+├── LICENSE
+├── package.json
+├── README.md
+├── data
+│  └── transactions.csv
+├── src
+│  ├── portfolio.js
+│  └── utils.js
+└── index.js
+</pre>
+
+### portfolio.js
+This is where we implement functionalities in commands.
+
+### utils.js
+This file contains the utilization functions.
+
+getExchangeRate: Get the current exchange rate of any cryptocurrency in any other currency that you need.
+
+---
 ## Question 1 - Programming
 _We're looking at your programming ability. It must not only work, it should be maintainable._
 
